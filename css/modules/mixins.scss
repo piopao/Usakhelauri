@@ -1,0 +1,26 @@
+@mixin background-position($x,$y){
+  background-position:$x $y;
+  -ms-background-position-x: $x;
+  -ms-background-position-y: $y;
+}
+@mixin font-face($font-family, $font-weight, $font-style) {
+	$filepath: "../fonts/";
+	$font-name: $font-family;
+
+	@if($font-weight != normal) {
+      $font-name : $font-name + capitalize($font-weight);
+	}
+	@if($font-style != normal) {
+      $font-name : $font-name + capitalize($font-style);
+	}
+
+  $filepath : $filepath + $font-name;
+
+	@font-face {
+		font-family: "#{$font-family}";
+		src: url($filepath + ".eot");
+		src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf") format('truetype'), url($filepath + ".svg#" + $font-name) format('svg');
+		font-weight:$font-weight;
+		font-style:$font-style;
+	}
+}
